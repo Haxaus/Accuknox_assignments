@@ -1,8 +1,10 @@
 Question:By default do django signals run in the same database transaction as the caller?
          Please support your answer with a code snippet that conclusively proves your stance.
+Location:
 Q3->
     myapp->
            models.py (The code present here)
+===========================================================
 
 -Go to the Python shell:
 
@@ -31,3 +33,8 @@ This rollback happens because we used transaction.atomic(), ensuring atomicity (
 Conclusion:
 ================
 This proves that Django signals and the caller run in the same database transaction, as failing the transaction undoes the object creation in the database.
+
+Output-photo:
+             Q3->
+                 myapp->
+                        Output.jpg
