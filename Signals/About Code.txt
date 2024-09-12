@@ -1,0 +1,17 @@
+Question: By default are django signals executed synchronously or asynchronously? Please support your answer with a code snippet that conclusively proves your stance.
+ Yes ,By default it executes synchronously but in django 5 can be change to asynchronously.
+================================================================
+Q1->
+        myapp->
+                  models.py(Code is there)
+  in terminal Run -python manage.py shell
+                  -from myapp.models import Model1
+                  -Model1.objects.create(name="any_name")
+  ===============================================================
+                      Output:
+                    Signal received!
+                    start at: time at which object start to create
+                    when obj.save() will run then signal triggers 
+                    after waiting for 5 seconds in signals it will process rest process(Showing sychronus behaviour)
+                    Signal handler finished processing
+                    end at: time at which whole process end takes 5 seconds due to delay
