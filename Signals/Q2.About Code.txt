@@ -4,15 +4,22 @@ Question: Do django signals run in the same thread as the caller? Please support
 Q2->
     myapp->
            models.py(Code is present here)
-                     
+===============================================================                     
                      -got to python shell
                      -Type: from myapp.models import Model2
                      -type:import threading
                      -print(threading.get_ident()): give you the identity of caller thread
                      - creat an object: Model2.objects.create(name="obj"), now signal triggers 
                        as it is post_save signal, so trigerred after afted abject is created 
-                       and saved. 
-                     -in output :code under signal handler run which print gives the identiy of thread 
+                       and saved.
+==============================================================================================
+                     output :    
+                                 code under signal handler run which print gives the identiy of thread 
                                  used by signal handler, you will see it matches with caller thread.
                                  This proves caller and Signal runs in same thread.
+=========================================================================================================
+Output-Photo:
+              Q2->
+                  myapp->
+                         Output.jpg
                         
