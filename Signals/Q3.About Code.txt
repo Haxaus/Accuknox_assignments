@@ -1,0 +1,33 @@
+Question:By default do django signals run in the same database transaction as the caller?
+         Please support your answer with a code snippet that conclusively proves your stance.
+Q3->
+    myapp->
+           models.py (The code present here)
+
+-Go to the Python shell:
+
+Type: from myapp.models import *
+To test a successful transaction:
+
+Type: test_the_transaction("object_name")
+
+This function will:
+==============
+.Create an object.
+.Save it, which will trigger the signal.
+
+Output:
+=============
+.The system will display how many objects were created before the signal was triggered.
+.After the post_save signal is triggered, the object is saved in the model.
+.The system then shows the updated count of objects created.
+
+When the transaction fails:
+====================================
+To simulate a failed transaction, create an object with name="fail". This will cause the transaction to fail.
+The number of objects created before and after the signal is triggered will be the same because the object creation is rolled back.
+This rollback happens because we used transaction.atomic(), ensuring atomicity (i.e., either all operations are executed, or none are).
+
+Conclusion:
+================
+This proves that Django signals and the caller run in the same database transaction, as failing the transaction undoes the object creation in the database.
